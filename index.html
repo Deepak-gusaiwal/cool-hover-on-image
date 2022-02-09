@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool hover Effects</title>
+</head>
+<style>
+    /* hover cool effects started */
+    /* of box 1 */
+    
+    .effect-box1 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+    }
+    
+    .effect-box1::before {
+        content: '';
+        position: absolute;
+        background-color: red;
+        width: 200px;
+        height: 200px;
+        transform: translateX(-102%);
+        z-index: -1;
+        animation: trans 2s infinite;
+    }
+    
+    @keyframes trans {
+        from {
+            transform: translateX(-102%);
+        }
+        to {
+            transform: translateX(0%);
+        }
+    }
+    /* of box 2 */
+    
+    .btn-box {
+        transform: translateY(833%);
+        transition: transform 1s;
+    }
+    
+    .effect-box2:hover>.btn-box {
+        transform: translateY(333%);
+        transition: transform 1s;
+    }
+    
+    .btn-box {
+        z-index: 5;
+    }
+    
+    .effect-box2 {
+        width: 200px;
+        height: 200px;
+        border: 1px solid black;
+        overflow: hidden;
+        position: relative;
+        color: white;
+        /* background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover; */
+        /* opacity: 0.3; */
+        /* backdrop-filter: invert(100%); */
+        background-repeat: no-repeat;
+    }
+    
+    .effect-box2::before {
+        content: '';
+        position: absolute;
+        background-color: rgba(255, 0, 0, 0.363);
+        border-radius: 0% 50% 50% 0%;
+        transform: scale(3);
+        width: 200%;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 2s;
+        z-index: 0;
+    }
+    
+    .effect-box2:hover:before {
+        transform: translateX(0%);
+    }
+    
+    .move {
+        /* background-color: green; */
+    }
+    
+    .move::before {
+        transform: translateX(0%);
+        transition: transform 1s;
+        /* z-index: -1; */
+    }
+    /* content css started */
+    
+    #content {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0%;
+        left: -4%;
+        display: none;
+        transform: translate(4%, -42%);
+        backdrop-filter: blur(4px);
+    }
+    
+    .image-to-show {
+        display: block;
+        margin: 383px auto;
+        width: 60vw;
+        border: 30px solid rgb(150, 150, 150);
+    }
+    /* .show {
+        display: block;
+    } */
+    
+    .main1 {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    
+    .helloBtn {
+        cursor: pointer;
+        padding: 9px 22px;
+        margin: -9px 59px;
+        background-color: red;
+        color: white;
+        font-weight: 700;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border: none;
+        border-radius: 47px 2px 47px 2px;
+    }
+</style>
+
+<body>
+
+    <!-- css animation of hover effects started -->
+
+    <div class="effect-box1">
+        <p>Animation effects</p>
+    </div>
+
+
+
+    <div class="main1">
+        <!-- box 2 -->
+        <div class="effect-box2" style=" background: url(./gif.gif); background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;">
+            <p style="z-index: 0; position: relative;">Some content of box 2</p>
+            <div class="btn-box">
+                <button class="helloBtn">Hello</button>
+                <a id='a' href="./gif.gif"></a>
+            </div>
+        </div>
+
+        <!-- box 2 -->
+        <div class="effect-box2" style=" background: url(./gif2.gif); background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;">
+            <p style="z-index: 0; position: relative;">Some content of box 2</p>
+            <div class="btn-box">
+                <button class="helloBtn">Hello</button>
+                <a id='a' href="./gif2.gif"></a>
+            </div>
+        </div>
+        <!-- box 3 -->
+        <div class="effect-box2" style=" background: url(./gif3.gif);background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;">
+            <p style="z-index: 0; position: relative;">Some content of box 3</p>
+            <div class="btn-box">
+                <button class="helloBtn">Hello</button>
+                <a id='a' href="./gif3.gif"></a>
+            </div>
+        </div>
+        <!-- box 3 -->
+        <div class="effect-box2" style=" background: url(./gif4.gif);background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;">
+            <p style="z-index: 0; position: relative;">Some content of box 3</p>
+            <div class="btn-box">
+                <button class="helloBtn">Hello</button>
+                <a id='a' href="./gif4.gif"></a>
+            </div>
+        </div>
+    </div>
+    <div class="main2">
+        <div id="content"></div>
+    </div>
+
+
+
+    <!-- css animation of hover effects end -->
+</body>
+<script>
+    let boxes = document.getElementsByClassName("effect-box2");
+    let btn = document.getElementsByClassName('helloBtn');
+    for (let i = 0; i < btn.length; i++) {
+        let a = document.querySelectorAll('.helloBtn')[i].nextElementSibling.href;
+        console.log(a);
+        btn[i].addEventListener('click', () => {
+            console.log('you clicked on btn', i);
+            let content = document.getElementById('content');
+            content.style.display = 'block';
+            let image = `<img src="${a}" class="image-to-show" alt="">`
+            content.innerHTML = image;
+            content.addEventListener('click', () => {
+                content.style.display = 'none';
+            })
+
+        })
+    }
+</script>
+
+</html>
